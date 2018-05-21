@@ -1,5 +1,5 @@
 # AdventureWorksEFCodeFirst
-EF 6 CodeFirst for AdventureWorks2017 (SqlServer) database using .net 4.5
+EF 6 CodeFirst for AdventureWorks2017 (SqlServer 2017) database using .net 4.5
 
 Download and Install Microsoft SQL Server Management Studio 17:<br/>
 https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-2017
