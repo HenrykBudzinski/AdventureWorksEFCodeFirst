@@ -91,6 +91,10 @@
     <Compile Include="Entities\Production\ProductReview.cs" />
     <Compile Include="Entities\Production\ProductSubcategory.cs" />
     <Compile Include="Entities\Purchasing\ProductVendor.cs" />
+    <Compile Include="Migrations\201805210036384_InitialModel.cs" />
+    <Compile Include="Migrations\201805210036384_InitialModel.Designer.cs">
+      <DependentUpon>201805210036384_InitialModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\Purchasing\PurchaseOrderDetail.cs" />
@@ -123,7 +127,11 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201805210036384_InitialModel.resx">
+      <DependentUpon>201805210036384_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
