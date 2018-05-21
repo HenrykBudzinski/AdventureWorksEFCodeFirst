@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A8C4C726-CFCE-4E32-88C1-F4CB1FA77E2E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AdventureWorks</RootNamespace>
+    <AssemblyName>AdventureWorks</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\People\Address.cs" />
+    <Compile Include="Entities\People\AddressType.cs" />
+    <Compile Include="AdventureWorksContext.cs" />
+    <Compile Include="Entities\Production\BillOfMaterial.cs" />
+    <Compile Include="Entities\People\BusinessEntity.cs" />
+    <Compile Include="Entities\People\BusinessEntityAddress.cs" />
+    <Compile Include="Entities\People\BusinessEntityContact.cs" />
+    <Compile Include="Entities\People\ContactType.cs" />
+    <Compile Include="Entities\People\CountryRegion.cs" />
+    <Compile Include="Entities\Sales\CountryRegionCurrency.cs" />
+    <Compile Include="Entities\Sales\CreditCard.cs" />
+    <Compile Include="Entities\Production\Culture.cs" />
+    <Compile Include="Entities\Sales\Currency.cs" />
+    <Compile Include="Entities\Sales\CurrencyRate.cs" />
+    <Compile Include="Entities\Sales\Customer.cs" />
+    <Compile Include="Entities\HumanResources\Department.cs" />
+    <Compile Include="Entities\People\EmailAddress.cs" />
+    <Compile Include="Entities\HumanResources\Employee.cs" />
+    <Compile Include="Entities\HumanResources\EmployeeDepartmentHistory.cs" />
+    <Compile Include="Entities\HumanResources\EmployeePayHistory.cs" />
+    <Compile Include="Entities\Production\Illustration.cs" />
+    <Compile Include="Entities\HumanResources\JobCandidate.cs" />
+    <Compile Include="Entities\Production\Location.cs" />
+    <Compile Include="Entities\People\Password.cs" />
+    <Compile Include="Entities\People\Person.cs" />
+    <Compile Include="Entities\Sales\PersonCreditCard.cs" />
+    <Compile Include="Entities\People\PersonPhone.cs" />
+    <Compile Include="Entities\People\PhoneNumberType.cs" />
+    <Compile Include="Entities\Production\Product.cs" />
+    <Compile Include="Entities\Production\ProductCategory.cs" />
+    <Compile Include="Entities\Production\ProductCostHistory.cs" />
+    <Compile Include="Entities\Production\ProductDescription.cs" />
+    <Compile Include="Entities\Production\ProductDocument.cs" />
+    <Compile Include="Entities\Production\ProductInventory.cs" />
+    <Compile Include="Entities\Production\ProductListPriceHistory.cs" />
+    <Compile Include="Entities\Production\ProductModel.cs" />
+    <Compile Include="Entities\Production\ProductModelIllustration.cs" />
+    <Compile Include="Entities\Production\ProductModelProductDescriptionCulture.cs" />
+    <Compile Include="Entities\Production\ProductPhoto.cs" />
+    <Compile Include="Entities\Production\ProductProductPhoto.cs" />
+    <Compile Include="Entities\Production\ProductReview.cs" />
+    <Compile Include="Entities\Production\ProductSubcategory.cs" />
+    <Compile Include="Entities\Purchasing\ProductVendor.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Entities\Purchasing\PurchaseOrderDetail.cs" />
+    <Compile Include="Entities\Purchasing\PurchaseOrderHeader.cs" />
+    <Compile Include="Entities\Sales\SalesOrderDetail.cs" />
+    <Compile Include="Entities\Sales\SalesOrderHeader.cs" />
+    <Compile Include="Entities\Sales\SalesOrderHeaderSalesReason.cs" />
+    <Compile Include="Entities\Sales\SalesPerson.cs" />
+    <Compile Include="Entities\Sales\SalesPersonQuotaHistory.cs" />
+    <Compile Include="Entities\Sales\SalesReason.cs" />
+    <Compile Include="Entities\Sales\SalesTaxRate.cs" />
+    <Compile Include="Entities\Sales\SalesTerritory.cs" />
+    <Compile Include="Entities\Sales\SalesTerritoryHistory.cs" />
+    <Compile Include="Entities\Production\ScrapReason.cs" />
+    <Compile Include="Entities\HumanResources\Shift.cs" />
+    <Compile Include="Entities\Purchasing\ShipMethod.cs" />
+    <Compile Include="Entities\Sales\ShoppingCartItem.cs" />
+    <Compile Include="Entities\Sales\SpecialOffer.cs" />
+    <Compile Include="Entities\Sales\SpecialOfferProduct.cs" />
+    <Compile Include="Entities\People\StateProvince.cs" />
+    <Compile Include="Entities\Sales\Store.cs" />
+    <Compile Include="Entities\Production\TransactionHistory.cs" />
+    <Compile Include="Entities\Production\TransactionHistoryArchive.cs" />
+    <Compile Include="Entities\Production\UnitMeasure.cs" />
+    <Compile Include="Entities\Purchasing\Vendor.cs" />
+    <Compile Include="Entities\Production\WorkOrder.cs" />
+    <Compile Include="Entities\Production\WorkOrderRouting.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
