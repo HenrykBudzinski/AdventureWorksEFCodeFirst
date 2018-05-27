@@ -7,7 +7,7 @@ namespace AdventureWorks.Core
     public interface IRepository<TEntity> 
         where TEntity : class
     {
-        IEnumerable<TEntity> Get(int id);
+        TEntity Get(int id);
         IEnumerable<TEntity> GetAll();
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
 

@@ -124,7 +124,6 @@
     <Compile Include="Entities\Purchasing\Vendor.cs" />
     <Compile Include="Entities\Production\WorkOrder.cs" />
     <Compile Include="Entities\Production\WorkOrderRouting.cs" />
-    <Compile Include="Repositories\People\PersonRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

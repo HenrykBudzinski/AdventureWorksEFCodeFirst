@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AdventureWorks.Core
 {
-    public class Repository<TEntity> : IRepository<TEntity>
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         protected readonly DbContext Context;
 
@@ -17,7 +17,7 @@ namespace AdventureWorks.Core
             Context = context;
         }
 
-        public IEnumerable<TEntity> Get(int id)
+        public TEntity Get(int id)
         {
             return Context.Set<TEntity>().Find(id);
         }
