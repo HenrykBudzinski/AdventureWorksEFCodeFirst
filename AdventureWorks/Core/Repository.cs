@@ -1,0 +1,52 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace AdventureWorks.Core
+{
+    public class Repository<TEntity> : IRepository<TEntity>
+    {
+        protected readonly DbContext Context;
+
+        public Repository(DbContext context)
+        {
+            Context = context;
+        }
+
+        public IEnumerable<TEntity> Get(int id)
+        {
+            return Context.Set<TEntity>().Find(id);
+        }
+        public IEnumerable<TEntity> GetAll()
+        {
+            return Context.Set<TEntity>().ToList();
+        }
+        public IEnumerable<TEntity> Find(
+            Expression<Func<TEntity, bool>> predicate)
+        {
+            return Context.Set<TEntity>().Where(predicate);
+        }
+
+        public void Add(TEntity entity)
+        {
+            Context.Set<TEntity>().Add(entity);
+        }
+        public void AddRange(IEnumerable<TEntity> entities)
+        {
+            Context.Set<TEntity>().AddRange(entities);
+        }
+
+        public void Remove(TEntity entity)
+        {
+            Context.Set<TEntity>().Remove(entity);
+        }
+        public void RemoveAll(IEnumerable<TEntity> entities)
+        {
+            Context.Set<TEntity>().RemoveRange(entities);
+        }
+    }
+}
