@@ -8,7 +8,6 @@ namespace AdventureWorks.Entities.People
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Person.BusinessEntity")]
     public partial class BusinessEntity
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

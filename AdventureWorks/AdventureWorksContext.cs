@@ -87,11 +87,16 @@ namespace AdventureWorks
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            #region HUMAN RESOURCES
+
+            #region DEPARTMENT
             modelBuilder.Entity<Department>()
                 .HasMany(e => e.EmployeeDepartmentHistories)
                 .WithRequired(e => e.Department)
                 .WillCascadeOnDelete(false);
+            #endregion
 
+            #region EMPLOYEE
             modelBuilder.Entity<Employee>()
                 .Property(e => e.MaritalStatus)
                 .IsFixedLength();
@@ -119,37 +124,30 @@ namespace AdventureWorks
             modelBuilder.Entity<Employee>()
                 .HasOptional(e => e.SalesPerson)
                 .WithRequired(e => e.Employee);
+            #endregion
+            
+            #endregion
 
-            modelBuilder.Entity<EmployeePayHistory>()
-                .Property(e => e.Rate)
-                .HasPrecision(19, 4);
+            #region PEOPLE
 
-            modelBuilder.Entity<Shift>()
-                .HasMany(e => e.EmployeeDepartmentHistories)
-                .WithRequired(e => e.Shift)
-                .WillCascadeOnDelete(false);
+            #region BUSINESS ENTITY
+            modelBuilder.Entity<BusinessEntity>()
+                .ToTable("BusinessEntity", "Person")
+                .HasKey(o => o.BusinessEntityID);
 
-            modelBuilder.Entity<Address>()
-                .HasMany(e => e.BusinessEntityAddresses)
-                .WithRequired(e => e.Address)
-                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<BusinessEntity>()
+                .Property(o => o.BusinessEntityID)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity)
+                .IsRequired();
 
-            modelBuilder.Entity<Address>()
-                .HasMany(e => e.SalesOrderHeaders)
-                .WithRequired(e => e.Address)
-                .HasForeignKey(e => e.BillToAddressID)
-                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<BusinessEntity>()
+                .Property(o => o.rowguid)
+                .HasColumnType("[uniqueidentifier] ROWGUIDCOL")
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
 
-            modelBuilder.Entity<Address>()
-                .HasMany(e => e.SalesOrderHeaders1)
-                .WithRequired(e => e.Address1)
-                .HasForeignKey(e => e.ShipToAddressID)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<AddressType>()
-                .HasMany(e => e.BusinessEntityAddresses)
-                .WithRequired(e => e.AddressType)
-                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<BusinessEntity>()
+                .Property(o => o.ModifiedDate)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
 
             modelBuilder.Entity<BusinessEntity>()
                 .HasMany(e => e.BusinessEntityAddresses)
@@ -172,38 +170,60 @@ namespace AdventureWorks
             modelBuilder.Entity<BusinessEntity>()
                 .HasOptional(e => e.Vendor)
                 .WithRequired(e => e.BusinessEntity);
+            #endregion
 
-            modelBuilder.Entity<ContactType>()
-                .HasMany(e => e.BusinessEntityContacts)
-                .WithRequired(e => e.ContactType)
-                .WillCascadeOnDelete(false);
+            #region PERSON
+            modelBuilder.Entity<Person>()
+                .ToTable("Person", "Person")
+                .HasKey(o => o.BusinessEntityID);
 
-            modelBuilder.Entity<CountryRegion>()
-                .HasMany(e => e.CountryRegionCurrencies)
-                .WithRequired(e => e.CountryRegion)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<CountryRegion>()
-                .HasMany(e => e.SalesTerritories)
-                .WithRequired(e => e.CountryRegion)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<CountryRegion>()
-                .HasMany(e => e.StateProvinces)
-                .WithRequired(e => e.CountryRegion)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Password>()
-                .Property(e => e.PasswordHash)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Password>()
-                .Property(e => e.PasswordSalt)
-                .IsUnicode(false);
+            modelBuilder.Entity<Person>()
+                .Property(o => o.BusinessEntityID)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             modelBuilder.Entity<Person>()
                 .Property(e => e.PersonType)
-                .IsFixedLength();
+                .HasMaxLength(2);
+
+            modelBuilder.Entity<Person>()
+                .Property(e => e.NameStyle)
+                .IsRequired();
+
+            modelBuilder.Entity<Person>()
+                .Property(e => e.Title)
+                .HasMaxLength(8);
+
+            modelBuilder.Entity<Person>()
+                .Property(e => e.FirstName)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            modelBuilder.Entity<Person>()
+                .Property(e => e.MiddleName)
+                .HasMaxLength(50);
+
+            modelBuilder.Entity<Person>()
+                .Property(e => e.LastName)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            modelBuilder.Entity<Person>()
+                .Property(e => e.EmailPromotion)
+                .IsRequired();
+
+            modelBuilder.Entity<Person>()
+                .Property(e => e.AdditionalContactInfo)
+                .HasColumnType("xml")
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
+
+            modelBuilder.Entity<Person>()
+                .Property(e => e.Demographics)
+                .HasColumnType("xml")
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Computed);
+
+            modelBuilder.Entity<Person>()
+                .Property(e => e.Suffix)
+                .HasMaxLength(10);
 
             modelBuilder.Entity<Person>()
                 .HasOptional(e => e.Employee)
@@ -238,6 +258,77 @@ namespace AdventureWorks
                 .HasMany(e => e.PersonPhones)
                 .WithRequired(e => e.Person)
                 .WillCascadeOnDelete(false);
+            #endregion
+
+            #endregion
+
+            #region PRODUCTION
+            #endregion
+
+            #region PURCHASING
+            #endregion
+
+            #region SALES
+            #endregion
+
+            modelBuilder.Entity<EmployeePayHistory>()
+                .Property(e => e.Rate)
+                .HasPrecision(19, 4);
+
+            modelBuilder.Entity<Shift>()
+                .HasMany(e => e.EmployeeDepartmentHistories)
+                .WithRequired(e => e.Shift)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Address>()
+                .HasMany(e => e.BusinessEntityAddresses)
+                .WithRequired(e => e.Address)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Address>()
+                .HasMany(e => e.SalesOrderHeaders)
+                .WithRequired(e => e.Address)
+                .HasForeignKey(e => e.BillToAddressID)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Address>()
+                .HasMany(e => e.SalesOrderHeaders1)
+                .WithRequired(e => e.Address1)
+                .HasForeignKey(e => e.ShipToAddressID)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<AddressType>()
+                .HasMany(e => e.BusinessEntityAddresses)
+                .WithRequired(e => e.AddressType)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<ContactType>()
+                .HasMany(e => e.BusinessEntityContacts)
+                .WithRequired(e => e.ContactType)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CountryRegion>()
+                .HasMany(e => e.CountryRegionCurrencies)
+                .WithRequired(e => e.CountryRegion)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CountryRegion>()
+                .HasMany(e => e.SalesTerritories)
+                .WithRequired(e => e.CountryRegion)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<CountryRegion>()
+                .HasMany(e => e.StateProvinces)
+                .WithRequired(e => e.CountryRegion)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Password>()
+                .Property(e => e.PasswordHash)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Password>()
+                .Property(e => e.PasswordSalt)
+                .IsUnicode(false);
 
             modelBuilder.Entity<PhoneNumberType>()
                 .HasMany(e => e.PersonPhones)
